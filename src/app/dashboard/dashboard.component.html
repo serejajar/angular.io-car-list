@@ -1,0 +1,40 @@
+<!--
+"id": "1",
+"name": "Black car",
+"img": "car.jpg",
+"year": "2007",
+"engine": "V8",
+"color": "black",
+"places": "4",
+"price": "8500 $" -->
+
+<h1>List of cars</h1>
+
+<div *ngIf="!dataForView" class="alert alert-warning">
+  Change the url for API at car.service.ts!
+</div>
+
+<table *ngIf="dataForView" class="table table-striped">
+  <thead>
+    <tr>
+      <th *ngFor="let th of theads">
+        {{th}}
+        <i (click)="sort(th)" [ngClass]="th !== objForSorting.prop ? 'fa-sort' : objForSorting.CSSclass" class="fa" aria-hidden="true"></i>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody *ngFor="let car of dataForView.cars">
+    <tr>
+      <td>{{car.id}}</td>
+      <td>
+        <img [src]="'/assets/' + car.img" alt="">
+      </td>
+      <td>{{car.name}}</td>
+      <td>{{car.year}}</td>
+      <td>{{car.price}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<app-filter-cars [data]="data" [dataForView]="dataForView"></app-filter-cars>

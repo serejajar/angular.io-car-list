@@ -1,3 +1,25 @@
+# To do
+- create the module (X)
+- create the component for the view (V)
+- create the data (json) (V)
+
+- get the data (V)
+- display the data (V)
+- sort cars (V)
+- filter cars (V)
+
+- adding a car
+- edit the car
+- delete a car
+- select a car
+- sharing
+
+- tests
+- style guide
+
+- backend
+
+
 # Angular4CarsList
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.2.
