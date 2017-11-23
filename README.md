@@ -8,17 +8,16 @@
 - sort cars (V)
 - filter cars (V)
 
-- adding a car
-- edit the car
-- delete a car
-- select a car
-- sharing
+- adding a car (V)
+- edit the car (V)
+- sharing (V)
+
+- delete a car (V)
+- select a car (V)
 
 - tests
-- style guide
-
-- backend
-
+- style guide 
+- styles (V)
 
 # Angular4CarsList
 

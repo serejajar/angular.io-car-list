@@ -1,30 +1,31 @@
-<!--
-"id": "1",
-"name": "Black car",
-"img": "car.jpg",
-"year": "2007",
-"engine": "V8",
-"color": "black",
-"places": "4",
-"price": "8500 $" -->
+<h3 class="text-center">List of cars:</h3>
 
-<h1>List of cars</h1>
-
-<div *ngIf="!dataForView" class="alert alert-warning">
-  Change the url for API at car.service.ts!
+<div *ngIf="!dataForView.cars" class="alert alert-warning">
+  Loading...
 </div>
 
-<table *ngIf="dataForView" class="table table-striped">
+<br>
+<br>
+<app-filter-cars *ngIf="dataForView.cars" [dataForView]="dataForView"></app-filter-cars>
+<br>
+
+<div *ngIf="message.length" class="alert alert-warning">{{message}}</div>
+
+<table *ngIf="dataForView.cars" class="table table-striped">
   <thead>
     <tr>
-      <th *ngFor="let th of theads">
+      <th *ngFor="let th of dataForView.theads">
         {{th}}
-        <i (click)="sort(th)" [ngClass]="th !== objForSorting.prop ? 'fa-sort' : objForSorting.CSSclass" class="fa" aria-hidden="true"></i>
+        <i (click)="sort(th)" class="fa"
+            [ngClass]="th !== objForSorting.prop ? 'fa-sort' : objForSorting.CSSclass"
+            aria-hidden="true">
+        </i>
       </th>
+      <th>actions</th>
     </tr>
   </thead>
 
-  <tbody *ngFor="let car of dataForView.cars">
+  <tbody *ngFor="let car of dataForView.cars;">
     <tr>
       <td>{{car.id}}</td>
       <td>
@@ -33,8 +34,17 @@
       <td>{{car.name}}</td>
       <td>{{car.year}}</td>
       <td>{{car.price}}</td>
+      <td>
+        <a [routerLink]="'/detail/' + car.id">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </a>
+        <a (click)="deleteCar(car)" href="javascript:void(0)">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </a>
+        <input type="checkbox"
+          (change)="selectCar(car.id)"
+          [checked]="carService.checkIfCarIsSelected(car.id)">
+      </td>
     </tr>
   </tbody>
 </table>
-
-<app-filter-cars [data]="data" [dataForView]="dataForView"></app-filter-cars>

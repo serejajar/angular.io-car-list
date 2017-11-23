@@ -1,14 +1,15 @@
-<form *ngIf="data.cars">
+<form class="form-inline text-center">
   Search
-  <input #searchInp value='' required>
+  <input #searchInp value='' placeholder="text" class="form-control">
   by colum name:
-  <input #propInp list="properties" value="name" required>
+  <input #propInp list="properties" value="name" class="form-control">
 
   <datalist id="properties">
-    <option *ngFor="let prop of props" [value]="prop">
+    <option *ngFor="let prop of dataForView.theads" [value]="prop">
   </datalist>
 
   <input (click)="filterCars(searchInp.value, propInp.value)"
-    type="submit"
-    value="Filter!">
+    type="button"
+    value="Filter!"
+    class="btn btn-primary">
 </form>

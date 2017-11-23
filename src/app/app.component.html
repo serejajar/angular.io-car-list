@@ -1,4 +1,9 @@
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-</nav>
+<div class="text-center">
+  <h1 class="text-center">{{title}}</h1>
+  <nav>
+    <a routerLink="/dashboard" class="btn btn-success">Dashboard</a>
+    <a routerLink="/add-car" class="btn btn-success">Add car</a>
+  </nav>
+</div>
+
 <router-outlet></router-outlet>

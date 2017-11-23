@@ -1,7 +1,7 @@
 {
   "cars": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Black car",
       "img": "car.png",
       "year": "2007",
@@ -11,7 +11,7 @@
       "price": "8500 $"
     },
     {
-      "id": "2",
+      "id": 2,
       "name": "Usual car",
       "img": "car.png",
       "year": "2009",
@@ -21,7 +21,7 @@
       "price": "1500 $"
     },
     {
-      "id": "3",
+      "id": 3,
       "name": "Dream car",
       "img": "car.png",
       "year": "2001",
@@ -31,7 +31,7 @@
       "price": "4500 $"
     },
     {
-      "id": "4",
+      "id": 4,
       "name": "Not your car",
       "img": "car.png",
       "year": "2003",
@@ -40,5 +40,7 @@
       "places": "8",
       "price": "5800 $"
     }
-  ]
+  ],
+  "theads": ["id", "img", "name", "year", "price"],
+  "props": ["name", "img", "year", "engine", "color", "places", "price"]
 }

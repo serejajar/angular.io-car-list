@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component , OnInit } from '@angular/core';
 
 import { CarService } from '../car.service';
-
 
 @Component({
   selector: 'app-dashboard',
@@ -10,31 +8,53 @@ import { CarService } from '../car.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  data: any = [];
   dataForView: any = [];
-  theads: string[] = ['id', 'img', 'name', 'year', 'price'];
+  message = '';
   objForSorting = {
     prop: '',
     toggle: false,
     CSSclass: ''
   };
+  props: string[];
 
-  constructor(private carService: CarService) { }
+  constructor(
+    private carService: CarService) { }
+
+
+  deleteCar(car) {
+    if (!this.carService.checkIfCarIsSelected(car.id)) {
+      // replace the block bellow with real requests:
+      // The DELETE API request and reload the data with the getCars() method
+      const data = JSON.parse(localStorage.getItem('data'));
+
+      for (const i in data.cars) {
+        if (data.cars[i].id === car.id) {
+          data.cars.splice(i, 1);
+        }
+      }
+
+      localStorage.setItem('data', JSON.stringify(data));
+      this.getCars();
+    } else {
+      this.message = `You can\'t delete the car with id: ${car.id}!`;
+    }
+
+  }
 
   ngOnInit() {
     this.getCars();
   }
 
-  getCars(): void {
-    this.carService.get('cars')
-      .subscribe(cars => {
-          this.data = cars;
-          this.dataForView = JSON.parse(JSON.stringify(cars)); // clone the data for able to sort/filter
-          console.log('Data', this.dataForView, this.data);
-        },
-        error => {
-          this.dataForView = false;
-        });
+  selectCar(id) {
+    const arr = JSON.parse(localStorage.selectedCars);
+    const index = arr.indexOf(id);
+
+    if (index === -1) {
+      arr.push(id);
+    } else {
+      arr.splice(index, 1);
+    }
+    localStorage.selectedCars = JSON.stringify(arr);
   }
 
   sort(prop) {
@@ -75,5 +95,9 @@ export class DashboardComponent implements OnInit {
       }
       return 0;
     }
+  }
+
+  private getCars(): void {
+    this.dataForView = JSON.parse(localStorage.getItem('data'));
   }
 }
