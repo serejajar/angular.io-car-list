@@ -1,6 +1,6 @@
 <div class="text-center">
   <h3>Add a car</h3>
-  <form class="form-inline">
+  <form *ngIf="props" class="form-inline">
     <div *ngFor="let prop of props" type="text">
       {{prop}}: <input type="text" [name]="prop" [(ngModel)]="carObj[prop]" class="form-control">
       <br>

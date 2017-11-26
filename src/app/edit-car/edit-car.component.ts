@@ -35,7 +35,11 @@ export class EditCarComponent implements OnInit {
       localStorage.getItem('data')
     ).props; // get props from the local storage
 
-    this.carId = +this.route.snapshot.paramMap.get('id');
+    // this.carId = +this.route.snapshot.paramMap.get('id');
+    this.route.params.subscribe(params => {
+      this.carId = +params['id'];
+    });
+
     this.title = `Details about the car with id #${this.carId}`;
     this.getCarById(this.carId);
   }
@@ -46,11 +50,13 @@ export class EditCarComponent implements OnInit {
 
       for (const i in data.cars) {
         if (data.cars[i].id === this.carId) {
+          this.car.id = this.carId;
           data.cars[i] = this.car;
         }
       }
 
       localStorage.setItem('data', JSON.stringify(data));
+      this.isEditMode = false;
     } else {
       this.message = 'You can\'t save the car!';
     }

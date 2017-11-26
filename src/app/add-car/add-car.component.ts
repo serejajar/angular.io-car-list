@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-car.component.css']
 })
 export class AddCarComponent implements OnInit {
-  carObj = {
+  carObj: any = {
     id: 0
   };
   props: string[];
@@ -30,6 +30,4 @@ export class AddCarComponent implements OnInit {
       this.carObj[prop] = '';
     }
   }
-
-
 }

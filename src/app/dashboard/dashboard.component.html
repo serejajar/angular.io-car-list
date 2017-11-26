@@ -13,10 +13,10 @@
 
 <table *ngIf="dataForView.cars" class="table table-striped">
   <thead>
-    <tr>
+    <tr >
       <th *ngFor="let th of dataForView.theads">
         {{th}}
-        <i (click)="sort(th)" class="fa"
+        <i (click)="sort(th)" *ngIf="th !== 'img'" class="fa"
             [ngClass]="th !== objForSorting.prop ? 'fa-sort' : objForSorting.CSSclass"
             aria-hidden="true">
         </i>
@@ -25,8 +25,8 @@
     </tr>
   </thead>
 
-  <tbody *ngFor="let car of dataForView.cars;">
-    <tr>
+  <tbody>
+    <tr *ngFor="let car of dataForView.cars;">
       <td>{{car.id}}</td>
       <td>
         <img [src]="'/assets/' + car.img" alt="">
